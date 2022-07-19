@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Color Picker</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <!-- <input type="color" name="color" id="color" value="#1e23b4"> -->
+
+    <h1>Color Picker by Ravi Patel</h1>
+    <p>Choose your Color Using Different Way.</p>
+    <div class="myGrid">
+
+        <div id="picker" class="myDiv">
+        </div>
+
+        <div class="values myDiv">
+            <h3 class="title">Selected Color</h3>
+            <p class="myColor"></p>
+            <p id="hex"></p>
+            <p id="hsla"></p>
+            <p id="rgba"></p>
+        </div>
+
+        <div id="sliderPicker" class="myDiv">
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@jaames/iro@5"></script>
+    <script>
+
+        let hexIn = document.getElementById('hex');
+        let hslIn = document.getElementById('hsla');
+        let rgbaIn = document.getElementById('rgba');
+        let myColor = document.querySelector('.myColor');
+        //var colorPicker = new iro.ColorPicker('#picker');
+
+        var colorPicker = new iro.ColorPicker('#picker', {
+            layout: [
+                {
+                    component: iro.ui.Wheel,
+                    options: {}
+                },
+                {
+                    component: iro.ui.Slider,
+                    options: { sliderType: 'hue' },
+
+                },
+                /*{
+                    component: iro.ui.Slider,
+                    options: { sliderType: 'saturation' }
+                },
+                {
+                    component: iro.ui.Slider,
+                    options: { sliderType: 'value' }
+                },
+                {
+                    component: iro.ui.Slider,
+                    options: { sliderType: 'red' }
+                },
+                {
+                    component: iro.ui.Slider,
+                    options: { sliderType: 'green' }
+                },
+                {
+                    component: iro.ui.Slider,
+                    options: { sliderType: 'blue' }
+                },
+                {
+                    component: iro.ui.Slider,
+                    options: { sliderType: 'alpha' }
+                },
+                {
+                    component: iro.ui.Slider,
+                    options: { sliderType: 'kelvin' }
+                },
+                {
+                    component: iro.ui.Slider,
+                    options: { sliderType: 'temperature' }
+                }, */
+
+            ]
+        });
+
+        colorPicker.on(['color:init', 'color:change'], function (color) {
+            // log the current color as a HEX string
+            hexIn.innerHTML = `Hex Value : ${color.hexString}`
+            hslIn.innerHTML = `HSLA Value : ${color.hslaString}`
+            rgbaIn.innerHTML = `RGBA Value : ${color.rgbaString}`
+            myColor.style.backgroundColor = color.hexString;
+        });
+
+
+        var sliderColorPicker = new iro.ColorPicker('#sliderPicker', {
+            layout: [
+                {
+                    component: iro.ui.Slider,
+                    options: { sliderType: 'hue' },
+
+                },
+                {
+                    component: iro.ui.Slider,
+                    options: { sliderType: 'saturation' }
+                },
+                {
+                    component: iro.ui.Slider,
+                    options: { sliderType: 'value' }
+                },
+                {
+                    component: iro.ui.Slider,
+                    options: { sliderType: 'red' }
+                },
+                {
+                    component: iro.ui.Slider,
+                    options: { sliderType: 'green' }
+                },
+                {
+                    component: iro.ui.Slider,
+                    options: { sliderType: 'blue' }
+                },
+                {
+                    component: iro.ui.Slider,
+                    options: { sliderType: 'alpha' }
+                },
+                {
+                    component: iro.ui.Slider,
+                    options: { sliderType: 'kelvin' }
+                },
+                {
+                    component: iro.ui.Slider,
+                    options: { sliderType: 'temperature' }
+                },
+
+            ]
+        });
+
+        sliderColorPicker.on(['color:init', 'color:change'], function (color) {
+            // log the current color as a HEX string
+            hexIn.innerHTML = `Hex Value : ${color.hexString}`
+            hslIn.innerHTML = `HSLA Value : ${color.hslaString}`
+            rgbaIn.innerHTML = `RGBA Value : ${color.rgbaString}`
+            myColor.style.backgroundColor = color.hexString;
+        });
+    </script>
+</body>
+
+</html>
